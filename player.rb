@@ -1,10 +1,3 @@
-# Player
-#   name
-#   lives
-#   
-#   method: decrement
-# 
-
 class Player
 
   attr_reader :name, :lives

@@ -1,21 +1,3 @@
-# Game
-# variables:
-#   player1
-#   player2
-#   current_player
-#   
-# methods:
-#   
-#   play
-#     initialize with 2 players, passed from main.rb
-#     while no player at zero, loop
-#     Keep track of current player
-#     create a new turn - call Turn
-#     if correct, report it, loop
-#     if incorrect, decrement current player's lives
-#     check if is zero
-#       if zero - report and quit loop       
-
 require_relative 'turn'
 
 class Game 
@@ -48,7 +30,7 @@ class Game
     while @continue
       turn = Turn.new(@current_player, @player_num)
       
-      turn.display
+      turn.hint
 
       turn.take_turn
 
@@ -66,25 +48,9 @@ class Game
       end
 
       puts "P1: #{@player1.lives}/3 vs P2: #{@player2.lives}/3"
-      # SWITCH PLAYER
 
-      # p "Player 1: #{@player1.lives}"
-      # p "current_player: #{@current_player.lives}"
-
-
-      if @current_player.lives == 0
-        @continue = false
-
-        # NEED TO BE ABLE TO PRINT WHO IS THE WINNER!
-        # Keep track of whether player #1 or #2 is current
-        if @player_num == 1
-          puts "Player 2 - #{@player2.name} wins with a score of #{@player2.lives}/3"
-        else
-          puts "Player 1 - #{@player1.name} wins with a score of #{@player1.lives}/3"
-        end
-
-        puts "----- GAME OVER -----"
-      else
+      if @current_player.lives > 0
+        
         if @current_player == @player1
           @current_player = @player2
           @player_num = 2
@@ -94,20 +60,23 @@ class Game
         end
 
         puts "----- NEW TURN -----"
+
+      else
+        
+        @continue = false
+
+        if @player_num == 1
+          puts "Player 2 - #{@player2.name} wins with a score of #{@player2.lives}/3"
+        else
+          puts "Player 1 - #{@player1.name} wins with a score of #{@player1.lives}/3"
+        end
+
+        puts "----- GAME OVER -----"
       end
-
-      # puts "-------"
-      # p "Player 1: #{@player1.lives}"
-      # p "Player 2: #{@player2.lives}"
-      # p "current_player: #{@current_player.lives}"
-
-      # if continue, then change player, loop
-      # if @continue = false, quit/return
       
     end
     
   end
-
 
 end
 

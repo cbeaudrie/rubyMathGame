@@ -7,9 +7,6 @@ player2 = Player.new('Suzie')
 
 game = Game.new(player1, player2)
 
-# game.play
-
-# game.display
 game.play
 
 
